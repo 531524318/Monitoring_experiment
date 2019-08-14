@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_ui"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="com.flag.monitoring_experiment.MainActivity"
+    android:weightSum="2.6"
+    android:background="@drawable/tuopuback">
+    <include layout="@layout/left_main_ui"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.6"
+        />
+    <include layout="@layout/middle_main_ui"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        />
+
+</LinearLayout>

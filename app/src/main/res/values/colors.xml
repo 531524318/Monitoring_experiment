@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorDeepBlue">#03b2ec</color>
+    <color name="colorBluePress">#006c8e</color>
+    <color name="colorBlack">#022b02</color>
+    <color name="colorBlackDeep">#081b08</color>
+    <color name="colorTouming">#01000000</color>
+    <color name="colorRedfalse">#df302d</color>
+    <color name="colorNumberPicker">#095b01</color>
+    <color name="colorWhiteLittle">#fcfffc</color>
+    <color name="colorWhitedeep">#dfe2df</color>
+    <color name="colorWhiteLight">#6e716e</color>
+    <color name="colorDeepRed">#b9382f</color>
+    <color name="colorLittleRed">#fa4d41</color>
+    <color name="colorLittle2Red">#d9443a</color>
+    <color name="colorWhiltText">#d7d3d3</color>
+    <color name="colorYelloDeep">#f4a00d</color>
+    <color name="colorGreenShallow">#7ac264</color>
+    <color name="colorGreenDeep">#398721</color>
+    <color name="colorBlueShallow">#087b8f</color>
+    <color name="colorBlueShallowlittle">#427c86</color>
+    <color name="colorLineChart">#07c4c7</color>
+    <color name="colorCallText">#A5DE33</color>
+    <color name="colorWifiContainer">#6eabaea2</color>
+    <color name="colorYellowLight">#f2ea03</color>
+    <color name="colorDeepGreen">#037432</color>
+    <color name="topoColor">#304B80</color>
+    <color name="darkgreen">#008F7D</color>
+    <color name="check_black">#465E46</color>
+</resources>

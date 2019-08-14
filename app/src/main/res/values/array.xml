@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="comarray">
+        <item>/dev/ttySAC1</item>
+        <item>/dev/ttySAC2</item>
+        <item>/dev/ttySAC3</item>
+        <item>/dev/ttySAC4</item>
+    </string-array>
+    <string-array name="baudrates_name">
+        <item>4800</item>
+        <item>9600</item>
+        <item>115200</item>
+    </string-array>
+
+    <string-array name="comarrayZN">
+        <item>串口1</item>
+        <item>串口2</item>
+        <item>串口3</item>
+        <item>串口4</item>
+    </string-array>
+    <string-array name="comarrayplc">
+        <item>/dev/ttySAC1</item>
+        <item>/dev/ttySAC2</item>
+        <item>/dev/ttySAC3</item>
+        <item>/dev/ttySAC4</item>
+    </string-array>
+    <string-array name="baudrates_nameplc">
+        <item>4800</item>
+        <item>9600</item>
+        <item>115200</item>
+    </string-array>
+
+    <string-array name="baudrates_value">
+        <item>4800</item>
+        <item>9600</item>
+        <item>115200</item>
+    </string-array>
+    <string-array name="verification_bit">
+        <item>NONE</item>
+        <item>ODD</item>
+        <item>EVEN</item>
+        <item>MARK</item>
+        <item>SPACE</item>
+    </string-array>
+    <string-array name="data_bit">
+        <item>8</item>
+        <item>7</item>
+        <item>6</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="stop_bit">
+        <item>1</item>
+        <item>1.5</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="protocol_type">
+        <item>TCP Client</item>
+    </string-array>
+    <string-array name="local_address">
+        <item>127.0.0.1</item>
+    </string-array>
+    <string-array name="remote_address">
+        <item>192.168.1.1</item>
+        <item>192.168.43.1</item>
+    </string-array>
+    <string-array name="Currentyear">
+        <item>2010</item>
+        <item>2011</item>
+        <item>2012</item>
+        <item>2013</item>
+        <item>2014</item>
+        <item>2015</item>
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+        <item>2019</item>
+        <item>2020</item>
+        <item>2021</item>
+        <item>2022</item>
+        <item>2023</item>
+        <item>2024</item>
+        <item>2025</item>
+        <item>2026</item>
+        <item>2027</item>
+        <item>2028</item>
+        <item>2029</item>
+        <item>2030</item>
+    </string-array>
+    <string-array name="huanMonth">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+</resources>
