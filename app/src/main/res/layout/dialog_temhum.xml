@@ -51,13 +51,14 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <lecho.lib.hellocharts.view.LineChartView
                     android:id="@+id/line_char_tem"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:background="@drawable/tem_char"
                     android:layout_margin="10dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:background="@drawable/tem_char" />
                 <TextView
                     android:id="@+id/temshowvalue"
                     android:layout_width="match_parent"
