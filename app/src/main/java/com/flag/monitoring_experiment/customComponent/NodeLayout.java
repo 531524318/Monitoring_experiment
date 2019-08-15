@@ -1,8 +1,9 @@
 package com.flag.monitoring_experiment.customComponent;
 
 //import android.annotation.TargetApi;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
@@ -22,26 +23,21 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.glhz.wisdomagriculture.MainUIActivity;
-import com.glhz.wisdomagriculture.R;
-import com.glhz.wisdomagriculture.tcpUtils.IOBlockedRunnable;
-import com.glhz.wisdomagriculture.tcpUtils.IOBlockedZigbeeRunnable;
+import com.flag.monitoring_experiment.MainActivity;
+import com.flag.monitoring_experiment.R;
+import com.flag.monitoring_experiment.tcpUtils.IOBlockedRunnable;
+import com.flag.monitoring_experiment.tcpUtils.IOBlockedZigbeeRunnable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android_serialport_api.GetSerialConfig;
-import android_serialport_api.SerialPort;
-
-import static com.glhz.wisdomagriculture.MainUIActivity.ZIGBEE_IP;
+import static com.flag.monitoring_experiment.MainActivity.ZIGBEE_IP;
 
 //import java.util.function.Predicate;
 //import java.util.function.ToIntFunction;
@@ -106,115 +102,115 @@ public class NodeLayout extends LinearLayout {
                 try {
                     String jsondata = hiddentext.getText().toString();
                     JSONObject jobject = new JSONObject(jsondata);
-                    if(jobject.getString("wifistatue").equals("true")){
-                        //组成命令字节,发送控制命令
-                        if(((LinearLayout)mThis.getParent()).getId() == R.id.containerLine12        //相等表示在控制节点区域下，所以该点击按钮会发送控制命令
-                                || ((LinearLayout)mThis.getParent()).getId() == R.id.containerLine22){
-                            String wifiip = jobject.getString("wifiip");
-                            String type = jobject.getString("type");
-                            switch (type){
-                                case "水泵":type = "wp";break;
-                                case "风扇":type = "af";break;
-                                case "卷帘":type = "rs";;break;
-                                case "植物生长灯":type = "pl";break;
-                                case "加热器":type = "cr";break;
-                                case "加湿器":type = "hr";break;
-                                /**cssf新增应用**/
-                                case "电磁锁":type = "el";break;
-                                case "可调灯":type = "al";break;
-                                case "继电器":type = "re";break;
-                                case "全向红外":type = "or";break;
-                                case "声光报警":type = "sl";break;
-                            }
-                            if(!wifiip.equals("")){
-                                IOBlockedRunnable run = (IOBlockedRunnable) MainUIActivity.socketMap.get(wifiip);
-                                if (run == null)return;
-                                String order = "Hwc"+type+run.getNumber() + (deviceStatue?"03offT":"02onT");
-                                //对控制电机单独处理，目前不需要设置数值，默认使用00 ,作单独处理
-                                if (type.equals("rs")){     //类型是卷帘电机
-                                    juanlianControl();
-                                    return;
-                                }
-                                if (type.equals("al")){     //类型是可调灯
-                                    run.pw.write("Hwcal"+number+"09startctrlT");
-                                    run.pw.flush();
-                                    lightUserInface(run,"Hw");
-                                    return;
-                                }
-                                if (type.equals("or")){     //类型是全向红外，显示界面
-                                    quanxiangUserInface(run,"Hw");
-                                    return;
-                                }
-                                run.pw.write(order);
-                                run.pw.flush();
-                            }
-                        }
-                    }
+//                    if(jobject.getString("wifistatue").equals("true")){
+//                        //组成命令字节,发送控制命令
+//                        if(((LinearLayout)mThis.getParent()).getId() == R.id.containerLine12        //相等表示在控制节点区域下，所以该点击按钮会发送控制命令
+//                                || ((LinearLayout)mThis.getParent()).getId() == R.id.containerLine22){
+//                            String wifiip = jobject.getString("wifiip");
+//                            String type = jobject.getString("type");
+//                            switch (type){
+//                                case "水泵":type = "wp";break;
+//                                case "风扇":type = "af";break;
+//                                case "卷帘":type = "rs";;break;
+//                                case "植物生长灯":type = "pl";break;
+//                                case "加热器":type = "cr";break;
+//                                case "加湿器":type = "hr";break;
+//                                /**cssf新增应用**/
+//                                case "电磁锁":type = "el";break;
+//                                case "可调灯":type = "al";break;
+//                                case "继电器":type = "re";break;
+//                                case "全向红外":type = "or";break;
+//                                case "声光报警":type = "sl";break;
+//                            }
+//                            if(!wifiip.equals("")){
+//                                IOBlockedRunnable run = (IOBlockedRunnable) MainUIActivity.socketMap.get(wifiip);
+//                                if (run == null)return;
+//                                String order = "Hwc"+type+run.getNumber() + (deviceStatue?"03offT":"02onT");
+//                                //对控制电机单独处理，目前不需要设置数值，默认使用00 ,作单独处理
+//                                if (type.equals("rs")){     //类型是卷帘电机
+//                                    juanlianControl();
+//                                    return;
+//                                }
+//                                if (type.equals("al")){     //类型是可调灯
+//                                    run.pw.write("Hwcal"+number+"09startctrlT");
+//                                    run.pw.flush();
+//                                    lightUserInface(run,"Hw");
+//                                    return;
+//                                }
+//                                if (type.equals("or")){     //类型是全向红外，显示界面
+//                                    quanxiangUserInface(run,"Hw");
+//                                    return;
+//                                }
+//                                run.pw.write(order);
+//                                run.pw.flush();
+//                            }
+//                        }
+//                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         });
-        zigbeeswitch.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    String jsondata = hiddentext.getText().toString();
-                    JSONObject jobject = new JSONObject(jsondata);
-                    if(jobject.getString("zigbeestatue").equals("true")){
-                        //组成命令字节,发送控制命令
-                        if(((LinearLayout)mThis.getParent()).getId() == R.id.containerLine12        //相等表示在控制节点区域下，所以该点击按钮会发送控制命令
-                                || ((LinearLayout)mThis.getParent()).getId() == R.id.containerLine22){
-                            String zigbeeip = jobject.getString("zigbeeip");
-                            String type = jobject.getString("type");
-                            switch (type){
-                                case "水泵":type = "wp";break;
-                                case "风扇":type = "af";break;
-                                case "卷帘":type = "rs";break;
-                                case "植物生长灯":type = "pl";break;
-                                case "加热器":type = "cr";break;
-                                case "加湿器":type = "hr";break;
-                                /**cssf新增应用**/
-                                case "电磁锁":type = "el";break;
-                                case "可调灯":type = "al";break;
-                                case "继电器":type = "re";break;
-                                case "全向红外":type = "or";break;
-                                case "声光报警":type = "sl";break;
-                            }
-                            if(!zigbeeip.equals("")){
-                                IOBlockedZigbeeRunnable run = (IOBlockedZigbeeRunnable) MainUIActivity.socketMap.get(zigbeeip);
-                                //对控制电机单独处理，目前不需要设置数值，默认使用00 ,作单独处理
-                                if (type.equals("rs")){     //卷帘电机
-                                    juanlianControl();
-                                    return;
-                                }
-                                if (type.equals("al")){     //类型是可调灯
-                                    run.pw.write("Hzcal"+number+"09startctrlT");
-                                    run.pw.flush();
-                                    lightUserInface(run,"Hz");
-                                    return;
-                                }
-                                if (type.equals("or")){     //类型时全向红外，显示界面
-                                    quanxiangUserInface(run,"Hz");
-                                    return;
-                                }
-                                Message msgInfo = new Message();
-                                msgInfo.what = 0x110;
-                                msgInfo.obj = number + sensorType + "控制中...";
-                                handler.sendMessage(msgInfo);
-                                zigbeeswitch.setEnabled(false);
-//                                handler.sendEmptyMessageDelayed(0x111,5000);
-                                Log.d(TAG, "发送控制指令: "+"Hzc"+type+number + (deviceStatue?"03offT":"02onT"));
-                                run.pw.write("Hzc"+type+number + (deviceStatue?"03offT":"02onT"));
-                                run.pw.flush();
-                            }
-                        }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+//        zigbeeswitch.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                try {
+//                    String jsondata = hiddentext.getText().toString();
+//                    JSONObject jobject = new JSONObject(jsondata);
+//                    if(jobject.getString("zigbeestatue").equals("true")){
+//                        //组成命令字节,发送控制命令
+//                        if(((LinearLayout)mThis.getParent()).getId() == R.id.containerLine12        //相等表示在控制节点区域下，所以该点击按钮会发送控制命令
+//                                || ((LinearLayout)mThis.getParent()).getId() == R.id.containerLine22){
+//                            String zigbeeip = jobject.getString("zigbeeip");
+//                            String type = jobject.getString("type");
+//                            switch (type){
+//                                case "水泵":type = "wp";break;
+//                                case "风扇":type = "af";break;
+//                                case "卷帘":type = "rs";break;
+//                                case "植物生长灯":type = "pl";break;
+//                                case "加热器":type = "cr";break;
+//                                case "加湿器":type = "hr";break;
+//                                /**cssf新增应用**/
+//                                case "电磁锁":type = "el";break;
+//                                case "可调灯":type = "al";break;
+//                                case "继电器":type = "re";break;
+//                                case "全向红外":type = "or";break;
+//                                case "声光报警":type = "sl";break;
+//                            }
+//                            if(!zigbeeip.equals("")){
+//                                IOBlockedZigbeeRunnable run = (IOBlockedZigbeeRunnable) MainUIActivity.socketMap.get(zigbeeip);
+//                                //对控制电机单独处理，目前不需要设置数值，默认使用00 ,作单独处理
+//                                if (type.equals("rs")){     //卷帘电机
+//                                    juanlianControl();
+//                                    return;
+//                                }
+//                                if (type.equals("al")){     //类型是可调灯
+//                                    run.pw.write("Hzcal"+number+"09startctrlT");
+//                                    run.pw.flush();
+//                                    lightUserInface(run,"Hz");
+//                                    return;
+//                                }
+//                                if (type.equals("or")){     //类型时全向红外，显示界面
+//                                    quanxiangUserInface(run,"Hz");
+//                                    return;
+//                                }
+//                                Message msgInfo = new Message();
+//                                msgInfo.what = 0x110;
+//                                msgInfo.obj = number + sensorType + "控制中...";
+//                                handler.sendMessage(msgInfo);
+//                                zigbeeswitch.setEnabled(false);
+////                                handler.sendEmptyMessageDelayed(0x111,5000);
+//                                Log.d(TAG, "发送控制指令: "+"Hzc"+type+number + (deviceStatue?"03offT":"02onT"));
+//                                run.pw.write("Hzc"+type+number + (deviceStatue?"03offT":"02onT"));
+//                                run.pw.flush();
+//                            }
+//                        }
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
 
     }
     private String QUANXIANG_STATUS = ""; //STUDY,SEND,CLEAR_ONE,CLEAR_ALL
@@ -236,6 +232,7 @@ public class NodeLayout extends LinearLayout {
             bn.setTextSize(20);
 
             bn.setOnClickListener(new OnClickListener() {
+                @SuppressLint("NewApi")
                 @Override
                 public void onClick(View v) {
                     if (quanxiangBtn != null){
@@ -384,18 +381,6 @@ public class NodeLayout extends LinearLayout {
 
     }
 
-    //卷连电机控制
-    private void juanlianControl() {
-        if (deviceStatue){
-            bindsensor.setText(number+"卷帘控制反转");
-        }else{
-            bindsensor.setText(number+"卷帘控制正转");
-        }
-        controlDianjiSerial(deviceStatue);
-        deviceStatue = !deviceStatue;
-    }
-
-
     //可调灯控制
     /**
      * 可调灯界面
@@ -508,53 +493,6 @@ public class NodeLayout extends LinearLayout {
             });
         }
     }
-
-    //对电机特殊控制，往串口发送信息
-    private GetSerialConfig config = null;
-    private OutputStream model_outPort = null;
-    private void controlDianjiSerial(boolean deviceStatue) {
-        if (model_outPort!=null){
-            String order = deviceStatue?"Hpc10008p1000000T":"Hpc10008p0000000T";
-            try {
-                model_outPort.write(order.getBytes());
-                return;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        SharedPreferences pref = getContext().getSharedPreferences("serial_com", Context.MODE_PRIVATE);
-        String model_com = pref.getString("plc_model_com", "/dev/ttySAC1");
-        String model_rate = pref.getString("plc_model_rate", "9600");
-        config = new GetSerialConfig();         //初始化串口配置对象
-        SerialPort modelPort;
-        try {
-            modelPort = config.getPlcSerialPort(getContext(), model_com, model_rate);
-            model_outPort = modelPort.getOutputStream();
-            String order = deviceStatue?"Hpc10008p1000000T":"Hpc10008p0000000T";
-            model_outPort.write(order.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void closeNode(){
-        if (sensorType.equals("卷帘")){
-            try {
-                if (model_outPort != null) {
-                    model_outPort.close();
-                    model_outPort = null;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (config!=null)
-                config.closeSerialPort();
-        }
-        if(popupWindow != null){
-            popupWindow.dismiss();
-        }
-    }
-
     public JSONObject getHiddenTextJSON(){
         try {
             return new JSONObject(hiddentext.getText().toString());
@@ -688,18 +626,6 @@ public class NodeLayout extends LinearLayout {
         String numberData = restr.substring(5,7);
         if (restr.startsWith("H")&&restr.charAt(2)=='d'&&restr.endsWith("T"))//检查是否符合条件
         {
-            if (sensorType.equals("卷帘")){
-                if(restr.substring(9,9 + Integer.parseInt(restr.substring(7,9))).equals("on")){
-                    bindsensor.setText(numberData+sensorType + "控制正转");
-                    controlDianjiSerial(false);
-                    deviceStatue = false;
-                }else if (restr.substring(9,9 + Integer.parseInt(restr.substring(7,9))).equals("off")){
-                    bindsensor.setText(numberData+sensorType + "控制反转");
-                    controlDianjiSerial(true);
-                    deviceStatue = true;
-                }
-                return;
-            }
             if (sensorType.equals("可调灯")){
                 if (restr.contains("breath"))           //这是普通的自动上传状态信息，不用管它，跳过就行
                     return;
@@ -812,7 +738,7 @@ public class NodeLayout extends LinearLayout {
     public int hideWifi(){
         String jsondata = hiddentext.getText().toString();
 
-        IOBlockedZigbeeRunnable run = (IOBlockedZigbeeRunnable) MainUIActivity.socketMap.get("/"+ZIGBEE_IP);
+        IOBlockedZigbeeRunnable run = (IOBlockedZigbeeRunnable) MainActivity.socketMap.get("/"+ZIGBEE_IP);
         if (run == null){
             wifiswitch.setVisibility(GONE);
             zigbeeswitch.setVisibility(VISIBLE);
@@ -845,7 +771,7 @@ public class NodeLayout extends LinearLayout {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        IOBlockedRunnable run = (IOBlockedRunnable) MainUIActivity.socketMap.get(wifiip);
+        IOBlockedRunnable run = (IOBlockedRunnable) MainActivity.socketMap.get(wifiip);
         if (run == null){
             wifiswitch.setVisibility(VISIBLE);
             zigbeeswitch.setVisibility(GONE);

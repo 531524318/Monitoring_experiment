@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--点击后-->
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@android:color/darker_gray"/>
+            <corners android:radius="0dp"/>
+        </shape>
+    </item>
+
+    <!--默认-->
+    <item android:state_pressed="false">
+        <shape>
+            <solid android:color="@color/colorDeepGreen"/>
+            <corners android:radius="0dp"/>
+        </shape>
+    </item>
+</selector>

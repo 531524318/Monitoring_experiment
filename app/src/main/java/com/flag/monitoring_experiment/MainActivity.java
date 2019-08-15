@@ -71,7 +71,7 @@ TextView successOpen;
     private PrintWriter outPC;                     //往电脑端发送数据对象
     private int tableWidth;     //记录屏幕宽和高
     private int tableHeight;
-
+    public static String ZIGBEE_IP = "192.168.1.180";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -320,8 +320,6 @@ TextView successOpen;
                                            collectLayoutMap.remove(orignalColle);                   //移除
                                            orignalNode.onlyIp = typeChangeKey[1];                  //采集节点作出改变
                                            orignalNode.updateHiddenText("type#" + typeChangeKey[2]);//改变隐藏域内容
-
-                                           nodeLayoutMap.remove(typeChangeKey[0]).closeNode();                 //移除原本的键值
                                            nodeLayoutMap.put(typeChangeKey[1], orignalNode);         //将新键值存进去
                                            collectLayoutMap.put(orignalNode, orignalColle);
                                            handlerData(typeChangeKey[2], numberNew, "linkChange");
