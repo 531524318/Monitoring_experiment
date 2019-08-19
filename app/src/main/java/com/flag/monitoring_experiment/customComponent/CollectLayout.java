@@ -153,7 +153,6 @@ public class CollectLayout extends LinearLayout {
             }
         });
     }
-
     public void setShowInit(String type, String wifiOrZigbee, String ipAddress, String number){       //设置第一次连接UI显示状态
         int imageId = 0;
         this.bindipAddress = ipAddress;         //设置IP方便索引到Runnable对象

@@ -115,18 +115,9 @@ public class IOBlockedRunnable implements Runnable {
                         wifiIP = "wifiip#"+ipAddress+"#";
                         this.engType = newEngType;
                         switch (engType){
-                            case "wp":type = "type#水泵";break;
                             case "af":type = "type#风扇";break;
-                            case "rs":type = "type#卷帘";break;
-                            case "pl":type = "type#植物生长灯";break;
-                            case "cr":type = "type#加热器";break;
-                            case "hr":type = "type#加湿器";break;
                             case "he":type = "type#温湿度";break;
                             case "ie":type = "type#光照度";break;
-                            case "on":type = "type#氧气";break;
-                            case "bp":type = "type#大气压";break;
-                            case "cd":type = "type#二氧化碳";break;
-                            case "du":type = "type#粉尘";break;
                             /**cssf新增应用节点**/
                             case "el":type = "type#电磁锁";break;
                             case "al":type = "type#可调灯";break;
@@ -151,18 +142,9 @@ public class IOBlockedRunnable implements Runnable {
                         this.engType = newEngType;
                         String orignalType = ipAddress+"#"+type.split("#")[1]+number;//旧的类型的键，MainUIActivity中nodeLayoutMap集合
                         switch (newEngType){
-                            case "wp":type = "type#水泵";break;
                             case "af":type = "type#风扇";break;
-                            case "rs":type = "type#卷帘";break;
-                            case "pl":type = "type#植物生长灯";break;
-                            case "cr":type = "type#加热器";break;
-                            case "hr":type = "type#加湿器";break;
                             case "he":type = "type#温湿度";break;
                             case "ie":type = "type#光照度";break;
-                            case "on":type = "type#氧气";break;
-                            case "bp":type = "type#大气压";break;
-                            case "cd":type = "type#二氧化碳";break;
-                            case "du":type = "type#粉尘";break;
                             /**cssf新增应用节点**/
                             case "el":type = "type#电磁锁";break;
                             case "al":type = "type#可调灯";break;
