@@ -151,7 +151,6 @@ public class IOBlockedRunnable implements Runnable {
                             case "re":type = "type#继电器";break;
                             case "or":type = "type#全向红外";break;
                             case "sl":type = "type#声光报警";break;
-
                             case "hi":type = "type#人体红外";break;
                             case "if":type = "type#红外对射";break;
                             case "ga":type = "type#可燃气体";break;
@@ -166,7 +165,6 @@ public class IOBlockedRunnable implements Runnable {
 
                 }
             }
-
         } catch (IOException e) {
             //e.printStackTrace();
         }

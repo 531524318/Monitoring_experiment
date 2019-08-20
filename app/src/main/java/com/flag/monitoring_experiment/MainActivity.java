@@ -318,6 +318,7 @@ public class MainActivity extends AppCompatActivity {
                                                String ip = areaAndipType[1];
                                                String type = areaAndipType[2];
                                                String number = areaAndipType[3];
+                                               Log.d(TAG, "检测到有节点退出：" +ip);
                                                synchronized (socketMap) {
                                                    socketMap.remove(ip);
                                                }
@@ -489,6 +490,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         try {
                             String clientAddress = clientsocket.getInetAddress().toString().trim();
+                            Log.d(TAG, "获取zigbee节点客户端连接: " + "New connection accept" + clientsocket.getInetAddress());
                             //发现重复ip，则断开该ip原本的连接，使用新连接
                             if (hasClientIPExite(clientAddress)) {
                                 getClientIPExite(clientAddress).closeSocket();
@@ -543,11 +545,6 @@ public class MainActivity extends AppCompatActivity {
                                         boolean control = false;
                                         switch (type) {
                                             case "水泵":
-                                            case "风扇":
-                                            case "卷帘":
-                                            case "植物生长灯":
-                                            case "加热器":
-                                            case "加湿器":
                                                 /**cssf新增应用**/
                                             case "电磁锁":
                                             case "可调灯":
@@ -558,7 +555,7 @@ public class MainActivity extends AppCompatActivity {
                                                 break;
                                         }
                                         if (control) {                               //放入右边
-                                            nllink.setImageBackgroundCanClick();
+//                                            nllink.setImageBackgroundCanClick();
 //                                        if (containerLine12.getChildCount() < 3) {      //一行三列，超出则换一行
 //                                            containerLine12.addView(nllink, lp);
 //                                        } else if (containerLine22.getChildCount() < 3) {
@@ -569,7 +566,7 @@ public class MainActivity extends AppCompatActivity {
 //                                        } else if (collect22.getChildCount() < 3) {
 //                                            collect22.addView(cl, lp);
 //                                        }
-//                                    } else {                                      //放入左边
+                                    } else {                                      //放入左边
                                             if (containerLine11.getChildCount() < 3) {      //一行三列，超出则换一行
                                                 containerLine11.addView(nllink, lp);
                                             } else if (containerLine21.getChildCount() < 3) {
